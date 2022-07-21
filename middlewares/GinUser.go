@@ -7,20 +7,10 @@ import (
 	"github.com/muskong/GoService/pkg/jwt"
 )
 
-func GinUserMiddleware() gin.HandlerFunc {
+func GinUserMiddleware(tokenName string, notAuth map[string]bool) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		path := ctx.Request.URL.Path
-
-		notAuth := map[string]bool{
-			"/user/login":   true,
-			"/user/wechat":  true,
-			"/story/list":   true,
-			"/story/detail": true,
-		}
 		if !notAuth[path] {
-
-			tokenName := jwt.Jwt.GetTokenName()
-
 			token := ctx.GetHeader(tokenName)
 
 			if token == "" {
