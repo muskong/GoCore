@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/muskong/GoService/pkg/jwt"
+	"github.com/muskong/GoPkg/jwt"
 )
 
 func GinUserMiddleware(tokenName string, notAuth map[string]bool) gin.HandlerFunc {
@@ -18,13 +18,7 @@ func GinUserMiddleware(tokenName string, notAuth map[string]bool) gin.HandlerFun
 				return
 			}
 
-			err := jwt.Jwt.ValidateToken(token)
-			if err != nil {
-				ctx.AbortWithStatusJSON(http.StatusOK, "auth error")
-				return
-			}
-			var user jwt.Algorithm
-			err = jwt.Jwt.DecodeToken(token, &user)
+			user, err := jwt.Jwt.ValidateToken(token)
 			if err != nil {
 				ctx.AbortWithStatusJSON(http.StatusOK, "auth error")
 				return
