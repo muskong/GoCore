@@ -11,7 +11,7 @@ type Response struct {
 	Time    int64  `json:"time"`
 }
 
-func NewError(message string) (code int, response *Response) {
+func Error(message string) (code int, response *Response) {
 	code = http.StatusOK
 	response = &Response{
 		Message: message,
@@ -20,7 +20,7 @@ func NewError(message string) (code int, response *Response) {
 	return
 }
 
-func NewSuccess(data any) (code int, response *Response) {
+func Success(data any) (code int, response *Response) {
 	code = http.StatusOK
 	response = &Response{
 		Data: data,
