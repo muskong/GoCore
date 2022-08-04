@@ -1,4 +1,4 @@
-package helper
+package respond
 
 import (
 	"net/http"
@@ -11,7 +11,7 @@ type Response struct {
 	Time    int64  `json:"time"`
 }
 
-func Error(message string) (code int, response *Response) {
+func Message(message string) (code int, response *Response) {
 	code = http.StatusOK
 	response = &Response{
 		Message: message,
@@ -20,7 +20,7 @@ func Error(message string) (code int, response *Response) {
 	return
 }
 
-func Success(data any) (code int, response *Response) {
+func Data(data any) (code int, response *Response) {
 	code = http.StatusOK
 	response = &Response{
 		Data: data,
