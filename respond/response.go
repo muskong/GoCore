@@ -6,9 +6,9 @@ import (
 )
 
 type Response struct {
-	Message string `json:"message"`
-	Data    any    `json:"data"`
-	Time    int64  `json:"time"`
+	Message string `json:"Message"`
+	Data    any    `json:"Data"`
+	Time    int64  `json:"Time"`
 }
 
 func Message(message string) (code int, response *Response) {
