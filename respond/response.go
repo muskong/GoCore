@@ -3,6 +3,8 @@ package respond
 import (
 	"net/http"
 	"time"
+
+	"github.com/muskong/GoPkg/zaplog"
 )
 
 type Response struct {
@@ -17,6 +19,7 @@ func Message(message string) (code int, response *Response) {
 		Message: message,
 		Time:    time.Now().Unix(),
 	}
+	zaplog.Sugar.Info("[respond]", response)
 	return
 }
 
@@ -26,5 +29,6 @@ func Data(data any) (code int, response *Response) {
 		Data: data,
 		Time: time.Now().Unix(),
 	}
+	zaplog.Sugar.Info("[respond]", response)
 	return
 }
