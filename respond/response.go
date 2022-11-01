@@ -29,6 +29,6 @@ func Data(data any) (code int, response *Response) {
 		Data: data,
 		Time: time.Now().Unix(),
 	}
-	zaplog.Sugar.Infof("[respond] %#v", data)
+	// zaplog.Sugar.Infof("[respond] %#v", data)
 	return
 }
